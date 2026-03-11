@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mala Ghee Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="ghee.css">
+  <script src="https://cdn.jsdelivr.net/npm/qrious"></script>
+  <style>
+    .page { display: none; }
+    .page.active { display: block; }
+    nav a { cursor: pointer; margin-right: 15px; }
+    .custom-carousel { max-width: 600px; margin: auto; }
+    .product { margin: 15px; text-align: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mala Ghee Store</h1>
+    <nav>
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('products')">Products</a>
+      <a onclick="showPage('about')">About</a>
+      <a onclick="showPage('contact')">Contact</a>
+    </nav>
+  </header>
+  <div id="home" class="page active">
+    <div class="hero text-center my-4">
+      <h2>Pure. Traditional. Healthy.</h2>
+      <p>Experience the richness of homemade ghee</p>
+    </div>
+    <div id="carouselHome" class="carousel slide custom-carousel" data-bs-ride="carousel" data-bs-interval="1500">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="images.jpeg" class="d-block w-100" alt="Slide 1">
+        </div>
+        <div class="carousel-item">
+          <img src="images (1).jpeg" class="d-block w-100" alt="Slide 4">
+        </div>
+        <div class="carousel-item">
+          <img src="image2.jpg" class="d-block w-100" alt="Slide 5">
+        </div>
+        <div class="carousel-item">
+          <img src="butter.avif" class="d-block w-100" alt="Slide 2">
+        </div>
+        <div class="carousel-item">
+          <img src="panner.webp" class="d-block w-100" alt="Slide 3">
+        </div>
+      </div>
+    </div>
+    <center>
+        <img src="Mala ghee.jpeg" alt="Cow Ghee" width="200"/>
+        <h3>Cow Ghee</h3>
+        <p>500ml - ₹240</p>
+        <img src="butter.avif" alt="Butter" width="200"/>
+        <h3>Butter</h3>
+        <p>100g - ₹70</p>
+        <img src="panner.webp" alt="Paneer" width="200"/>
+        <h3>Paneer</h3>
+        <p>100g - ₹50</p>
+        </center>
+  </div>
+    <div id="products" class="page">
+    <section class="container my-4">
+      <h2>Our Products</h2>
+
+      <div class="product-section mb-3">
+        <h3>Cow Ghee</h3>
+        <img src="Mala ghee.jpeg" alt="Cow Ghee" width="200" />
+        <table class="table table-success">
+          <thead><tr><th>Quantity</th><th>Price</th></tr></thead>
+          <tbody>
+            <tr><td>50ml</td><td>₹24</td></tr>
+            <tr><td>100ml</td><td>₹48</td></tr>
+            <tr><td>150ml</td><td>₹72</td></tr>
+            <tr><td>250ml</td><td>₹120</td></tr>
+            <tr><td>1L</td><td>₹240</td></tr>
+          </tbody>
+        </table>
+        <label>Select Quantity:</label>
+        <select id="quantity-cowghee" onchange="updateTotal()">
+          <option value="0">--Select--</option>
+          <option value="50">50ml</option>
+          <option value="100">100ml</option>
+          <option value="150">150ml</option>
+          <option value="250">250ml</option>
+          <option value="1000">1L</option>
+          <option value="2000">2L</option>
+          <option value="3000">3L</option>
+        </select>
+      </div>
+      <hr>
+      <div class="product-section mb-3">
+        <h3>Butter</h3>
+        <img src="butter.avif" alt="Butter" width="200" />
+        <table class="table table-warning">
+          <thead><tr><th>Quantity</th><th>Price</th></tr></thead>
+          <tbody>
+            <tr><td>100g</td><td>₹70</td></tr>
+            <tr><td>200g</td><td>₹140</td></tr>
+            <tr><td>500g</td><td>₹350</td></tr>
+          </tbody>
+        </table>
+        <label>Select Quantity:</label>
+        <select id="quantity-butter" onchange="updateTotal()">
+          <option value="0">--Select--</option>
+          <option value="100">100g</option>
+          <option value="200">200g</option>
+          <option value="500">500g</option>
+        </select>
+      </div>
+      <hr>
+
+      <div class="product-section mb-3">
+        <h3>Paneer</h3>
+        <img src="panner.webp" alt="Paneer" width="200" />
+        <table class="table table-info">
+          <thead><tr><th>Quantity</th><th>Price</th></tr></thead>
+          <tbody>
+            <tr><td>100g</td><td>₹50</td></tr>
+            <tr><td>200g</td><td>₹100</td></tr>
+            <tr><td>500g</td><td>₹250</td></tr>
+          </tbody>
+        </table>
+        <label>Select Quantity:</label>
+        <select id="quantity-paneer" onchange="updateTotal()">
+          <option value="0">--Select--</option>
+          <option value="100">100g</option>
+          <option value="200">200g</option>
+          <option value="500">500g</option>
+        </select>
+      </div>
+      <hr>
+
+      <h3 id="totalPrice">Total: ₹0</h3>
+      <div id="qrArea"></div>
+
+      <h4>Shipping Details</h4>
+      <input type="text" id="name" placeholder="Enter Your Name" required><br><br>
+      <input type="email" id="email" placeholder="Enter Your Email" required><br><br>
+      <input type="tel" id="phone" placeholder="Enter Your Phone Number" required><br><br>
+      <textarea id="address" placeholder="Enter Your Shipping Address" required></textarea><br><br>
+      <button onclick="placeOrder()">Place Order</button>
+    </section>
+  </div>
+  <div id="about" class="page">
+    <section class="container my-4">
+      <h2>About Us</h2>
+      <p>Mala Ghee Store is a well-known destination for pure, high-quality ghee that brings the richness of tradition to every home. Prepared using age-old methods and the finest ingredients, the ghee from Mala Ghee Store is known for its authentic taste, golden color, and natural aroma. Whether it's for cooking, making sweets, or daily consumption, customers trust the store for its consistent quality and freshness. With a strong focus on hygiene and customer satisfaction, Mala Ghee Store has earned a loyal customer base who value purity and tradition in every spoonful.</p>
+      <div id="carouselAbout" class="carousel slide custom-carousel" data-bs-ride="carousel" data-bs-interval="1500">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="images.jpeg" class="d-block w-100" alt="Slide 1">
+          </div>
+          <div class="carousel-item">
+            <img src="images (1).jpeg" class="d-block w-100" alt="Slide 4">
+          </div>
+          <div class="carousel-item">
+            <img src="image2.jpg" class="d-block w-100" alt="Slide 5">
+          </div>
+          <div class="carousel-item">
+            <img src="butter.avif" class="d-block w-100" alt="Slide 2">
+          </div>
+          <div class="carousel-item">
+            <img src="panner.webp" class="d-block w-100" alt="Slide 3">
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div id="contact" class="page">
+    <section class="container my-4">
+      <h2>Contact Us</h2>
+      <p>Email: <a href="mailto:malaghee@gmail.com">malaghee@gmail.com</a></p>
+      <p>Phone: +91 8870675050</p>
+      <p>Location: Puliyakulam, Coimbatore, Tamil Nadu</p>
+    </section>
+  </div>
+  <footer class="text-center p-3 bg-light">
+    <p>&copy; 2025 Mala Ghee Store. All rights reserved.</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+    }
+
+    const prices = {
+      cowghee: { 50: 24, 100: 48, 150: 72, 250: 120, 1000: 240, 2000: 480, 3000: 720 },
+      butter: { 100: 70, 200: 140, 500: 350 },
+      paneer: { 100: 50, 200: 100, 500: 250 }
+    };
+
+    function updateTotal() {
+      const qCow = document.getElementById("quantity-cowghee").value;
+      const qButter = document.getElementById("quantity-butter").value;
+      const qPaneer = document.getElementById("quantity-paneer").value;
+
+      const total = (prices.cowghee[qCow] || 0) + (prices.butter[qButter] || 0) + (prices.paneer[qPaneer] || 0);
+      document.getElementById("totalPrice").textContent = `Total: ₹${total}`;
+
+      const qrArea = document.getElementById("qrArea");
+      qrArea.innerHTML = "";
+      if (total > 0) {
+        const upiLink = `upi://pay?pa=srisarvesh.b78-1@oksbi&pn=Srisarvesh&am=${total}&cu=INR`;
+        const gpayLink = `https://pay.google.com/gp/p/ui/pay?pa=srisarvesh.b78-1@oksbi&pn=Srisarvesh&am=${total}&cu=INR`;
+
+        const qr = new QRious({ value: upiLink, size: 200 });
+        const img = document.createElement("img");
+        img.src = qr.toDataURL();
+        qrArea.appendChild(img);
+
+        const p = document.createElement("p");
+        p.textContent = "Scan this QR with any UPI app";
+        qrArea.appendChild(p);
+
+        const payLink = document.createElement("a");
+        payLink.href = gpayLink;
+        payLink.target = "_blank";
+        payLink.textContent = "Pay with GPay";
+        payLink.style.display = "inline-block";
+        payLink.style.marginTop = "10px";
+        payLink.style.fontWeight = "bold";
+        payLink.style.color = "#007bff";
+        payLink.style.textDecoration = "underline";
+        qrArea.appendChild(payLink);
+      }
+    }
+
+    function placeOrder() {
+      const qCow = document.getElementById("quantity-cowghee").value;
+      const qButter = document.getElementById("quantity-butter").value;
+      const qPaneer = document.getElementById("quantity-paneer").value;
+
+      const total = (prices.cowghee[qCow] || 0) + (prices.butter[qButter] || 0) + (prices.paneer[qPaneer] || 0);
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const address = document.getElementById("address").value;
+
+      if (!name || !email || !phone || !address || total === 0) {
+        alert("Please fill all details and select product quantities.");
+        return;
+      }
+
+      fetch("http://localhost:3000/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          products: { cowghee: qCow, butter: qButter, paneer: qPaneer },
+          name, email, phone, address, totalAmount: total
+        }),
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert("Order placed successfully! Confirmation sent to your phone.");
+        } else {
+          alert("Failed to place order. Try again later.");
+        }
+      })
+      .catch(err => {
+        console.error("Error placing order:", err);
+        alert("Error occurred while placing the order.");
+      });
+    }
+  </script>
+</body>
+</html>
